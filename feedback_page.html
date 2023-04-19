@@ -252,14 +252,19 @@
     <script>
 
 
-        let back = document.querySelector(".fixed_bar ").children[0]
+       let localback = document.querySelector(".fixed_bar ").children[0]
         let home = document.querySelector(".fixed_bar ").children[1]
 
-        back.addEventListener("click", () => {
-            feedback_page_hide.classList.toggle("show")       //showing the previous section by back button
-            tellus_more_page.classList.toggle("show")
-            console.log("back")
+        localback.addEventListener("click", () => {
+            if (tellus_more_page.classList.contains("show")) {
+                tellus_more_page.classList.remove("show")
+                feedback_page_hide.classList.add("show")       //getting back to the previous section if the second section is displayed
+            }
+            else {
+                history.go(-1)                                 //getting back to the previous page if the first section is displayed
+            }
         })
+
         home.addEventListener("click", () => {
             window.location.href = 'index.html';
         })
